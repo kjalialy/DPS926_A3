@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manager</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card button = true color='tertiary'>
+    <ion-card-header>
+      <ion-card-title>History</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      View all purchase items and more information about the purchase like:
+      data & time of purchase and total cost of transaction
+      <ion-button expand="block" color="light" [routerLink]="['/history']">More information</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card button = true color='tertiary'>
+    <ion-card-header>
+      <ion-card-title>Restock</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Ability to restock total quantity of products available
+      <ion-button expand="block" color="light" [routerLink]="['/restock']">More information</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card button = true color='tertiary'>
+    <ion-card-header>
+      <ion-card-title>Add New Product</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Add new products to the clothing list
+      <ion-button expand="block" color="light" [routerLink]="['/add-product']">More information</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

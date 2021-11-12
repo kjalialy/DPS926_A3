@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Restock</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-label style="font-size: 1.2em;">{{selectedProduct}}</ion-label>
+  <ion-item>
+    <ion-label position="floating">Enter new quantity</ion-label>
+    <ion-input [(ngModel)]="quantity"></ion-input>
+  </ion-item>
+  <section class="wrapper">
+    <ion-button (click)="restockProduct()">Restock</ion-button>
+    <ion-button color="dark" [routerLink]="['/manager']">Cancel</ion-button>
+  </section>
+
+  <ion-list>
+    <ion-list-header>
+      Clothing
+    </ion-list-header>
+    <div *ngFor="let product of products; let idx=index;">
+      <ion-item button (click)="selectClothing(idx)" detail='false'>
+        <ion-label>
+          <h2 style="color: #72a3f2;">{{product.name}}</h2>
+          <h3>Price: ${{product.price}}</h3>
+          <ion-badge color="warning" slot="end">{{product.quantity}}</ion-badge>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

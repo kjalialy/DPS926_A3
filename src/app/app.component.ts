@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  public static productList = [];
+  public static historyList = [];
   constructor() {}
 }

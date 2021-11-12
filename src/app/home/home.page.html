@@ -1,20 +1,80 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="md">Cash Register App</ion-title>
     </ion-toolbar>
   </ion-header>
+  
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col>
+        <ion-label id = "clothingType"style="font-size: 1.5em;">{{type}}</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-button color="danger" size="small" expand="full" [routerLink]="['/manager']">Manager</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-label style="font-size: 1.2em;">Quantity: {{quantity}}</ion-label>
+    </ion-row>
+    <div class="wrapper">
+      <ion-row>
+        <ion-col>
+          <ion-button color="light" size="large" (click)="selectQuantity(1)">1</ion-button>
+          <ion-button color="light" size="large" (click)="selectQuantity(2)">2</ion-button>
+          <ion-button color="light" size="large" (click)="selectQuantity(3)">3</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="light" size="large" (click)="selectQuantity(4)">4</ion-button>
+          <ion-button color="light" size="large" (click)="selectQuantity(5)">5</ion-button>
+          <ion-button color="light" size="large" (click)="selectQuantity(6)">6</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="light" size="large" (click)="selectQuantity(7)">7</ion-button>
+          <ion-button color="light" size="large" (click)="selectQuantity(8)">8</ion-button>
+          <ion-button color="light" size="large" (click)="selectQuantity(9)">9</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+          <ion-button color="light" size="large" (click)="selectQuantity(0)">0</ion-button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="danger" (click)="reset()">Reset</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-col>
+        <ion-label style="font-size: 1.5em;">{{total}}</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-button color="primary" size="small" expand="full" (click) = "buyProduct()">Buy</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- List of Text Items -->
+  <ion-list>
+    <ion-list-header>
+      Clothing
+    </ion-list-header>
+    <div *ngFor="let product of products; let idx=index;">
+      <ion-item button (click)="selectClothing(idx)" detail='false'>
+        <ion-label>
+          <h2 style="color: #72a3f2;">{{product.name}}</h2>
+          <h3>Price: ${{product.price}}</h3>
+          <ion-badge color="warning" slot="end">{{product.quantity}}</ion-badge>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
 </ion-content>
