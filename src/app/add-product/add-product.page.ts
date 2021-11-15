@@ -13,16 +13,15 @@ import { DataManager } from '../dataManager';
   styleUrls: ['./add-product.page.scss'],
 })
 export class AddProductPage implements OnInit {
-  productName: string;
-  productPrice: string;
-  productQuantity: string;
-  constructor(private dataManager: DataManager, public alertController: AlertController, public toastController: ToastController, private router: Router) { }
-
+  product: Product;
+  constructor(private dataManager: DataManager, public alertController: AlertController, public toastController: ToastController, private router: Router) { 
+    this.product = new Product();
+  }
   ngOnInit() {
   }
 
   async addProduct() {
-    if (await this.dataManager.addProduct(this.productName, this.productPrice, this.productQuantity)) {
+    if (await this.dataManager.addProduct(this.product)) {
       this.router.navigate(['']);
     };
   }

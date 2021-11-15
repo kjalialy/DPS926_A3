@@ -25,9 +25,9 @@ export class DataManager {
       await alert.present();
     }
 
-    async toastMessage(message) {
+    async toastMessage(message, header) {
       const toast = await this.toastController.create({
-        header: 'Product Restocked',
+        header: header,
         message: message,
         position: 'bottom',
         color: 'primary',
@@ -42,7 +42,7 @@ export class DataManager {
     
       product.setQuantity(Number(product.quantity) + Number(quantity));
 
-      await this.toastMessage(`${product.name} has been restocked!`);
+      await this.toastMessage(`${product.name} has been restocked!`, "Product Restocked");
     }
 
     async buyProduct(quantity, product, total) {
@@ -50,15 +50,15 @@ export class DataManager {
       product.setQuantity(updateQuantity);
       AppComponent.historyList.push(new History(product.name, Number(quantity), product.price, `${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`, Number(total)));
 
-      await this.toastMessage(`${product.name} has been bought successfully!`);
+      await this.toastMessage(`${product.name} has been bought successfully!`, "Product Purchased");
     }
 
 
-    async addProduct(productName: string, productPrice: string, productQuantity: string) {
+    async addProduct(userProduct: Product) {
         let isFound = false;
     
         for (let product of AppComponent.productList) {
-          if (product.name.toLowerCase() == productName.toLowerCase()) isFound = true;
+          if (product.name.toLowerCase() == userProduct.getName().toLowerCase()) isFound = true;
         }
     
         if (isFound) {
@@ -66,20 +66,20 @@ export class DataManager {
           return false;
         }
         else {
-          if (productName == null) {
+          if (userProduct.getName() == null) {
             await this.errorMessage("Please enter the product name", "Error");
             return false;
           }
-          else if (productPrice == null) {
+          else if (userProduct.getPrice() == null) {
             await this.errorMessage("Please enter the product price", "Error");
             return false;
           }
-          else if (productQuantity == null) {
+          else if (userProduct.getQuantity() == null) {
             await this.errorMessage("Please enter the quantity price", "Error");
             return false;
           }
           else {
-            let newProduct = new Product(productName, Number(productQuantity), Number(productPrice));
+            let newProduct = userProduct;
             AppComponent.productList.push(newProduct);
             await this.errorMessage(`${newProduct.getName()} has been added to the list`, "Success");
             return true;
