@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { Product } from '../product';
 import { DataManager } from '../dataManager';
 
@@ -14,7 +15,7 @@ import { DataManager } from '../dataManager';
 })
 export class AddProductPage implements OnInit {
   product: Product;
-  constructor(private dataManager: DataManager, public alertController: AlertController, public toastController: ToastController, private router: Router) { 
+  constructor(public modalController: ModalController, private dataManager: DataManager, public alertController: AlertController, public toastController: ToastController, private router: Router) { 
     this.product = new Product();
   }
   ngOnInit() {
@@ -22,8 +23,26 @@ export class AddProductPage implements OnInit {
 
   async addProduct() {
     if (await this.dataManager.addProduct(this.product)) {
+      this.dismiss();
       this.router.navigate(['']);
     };
   }
 
+  async navigateBack() {
+    const isModalOpened = await this.modalController.getTop();
+
+    if (isModalOpened) {
+      this.dismiss()
+    }
+    else {
+      this.router.navigate(['/manager']);
+    }
+  }
+  dismiss() {
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
 }

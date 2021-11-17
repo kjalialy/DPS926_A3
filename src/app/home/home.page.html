@@ -62,6 +62,21 @@
     </ion-row>
   </ion-grid>
 
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light">
+        <ion-icon (click) = "restockProduct()" name="repeat-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click) = "addProduct()" color="light">
+        <ion-icon name="shirt-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+
   <!-- List of Text Items -->
   <ion-list>
     <ion-list-header>

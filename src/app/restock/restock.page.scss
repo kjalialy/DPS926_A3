@@ -1,5 +1,8 @@
-.wrapper {
-  padding-top: 10px;
-    width: 50%;
-    margin: 0 auto;
-  }
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  margin-top: 20px;
+  justify-content: center;
+}

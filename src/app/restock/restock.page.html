@@ -16,11 +16,11 @@
   </ion-list>
   <ion-item>
     <ion-label position="floating">Enter new quantity</ion-label>
-    <ion-input [(ngModel)]="quantity"></ion-input>
+    <ion-input [(ngModel)]="quantity" clear-input=true></ion-input>
   </ion-item>
-  <section class="wrapper">
+  <section class="flex-parent jc-center">
     <ion-button (click)="restockProduct()">Restock</ion-button>
-    <ion-button color="dark" [routerLink]="['/manager']">Cancel</ion-button>
+    <ion-button color="dark" (click)="navigateBack()">Cancel</ion-button>
   </section>
 
   <ion-list>

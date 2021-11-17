@@ -3,8 +3,11 @@ import { Product } from '../product'
 import { History } from '../history'
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { DataManager } from '../dataManager';
+import { AddProductPage } from '../add-product/add-product.page';
+import { RestockPage } from '../restock/restock.page';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +20,7 @@ export class HomePage {
   total: string;
   quantity: string;
   isProductSelected: boolean;
-  constructor(private dataManager: DataManager, public alertController: AlertController, public toastController: ToastController) {
+  constructor(public modalController: ModalController, private dataManager: DataManager, public alertController: AlertController, public toastController: ToastController) {
     this.type = "Type";
     this.total = "Total"
     this.quantity = "0"
@@ -30,6 +33,24 @@ export class HomePage {
     AppComponent.productList.push(new Product("Dresses", 30, 60));
 
     this.products = AppComponent.productList;
+  }
+
+  async restockProduct() {
+    const modal = await this.modalController.create({
+      component: RestockPage,
+      swipeToClose: true,
+      cssClass: 'my-custom-class'
+    });
+    return await modal.present();
+  }
+
+  async addProduct() {
+    const modal = await this.modalController.create({
+      component: AddProductPage,
+      swipeToClose: true,
+      cssClass: 'my-custom-class'
+    });
+    return await modal.present();
   }
 
   selectClothing(idx) {

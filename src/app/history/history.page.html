@@ -9,17 +9,25 @@
 
 <ion-content>
   <!-- List of Text Items -->
-  <ion-list>
-    <ion-list-header>
-      Clothing
-    </ion-list-header>
-    <div *ngFor="let product of historyProducts; let idx=index;">
-      <ion-item button detail='true' [routerLink]="['/history-detail', idx]">
-        <ion-label>
-          <h2 style="color: #72a3f2;">{{product.name}}</h2>
-          <h3>Date: {{product.dateOfPurchase}}</h3>
-        </ion-label>
-      </ion-item>
+  <div *ngIf="historyProducts.length > 0; else noProducts">
+    <ion-list>
+      <ion-list-header>
+        Clothing
+      </ion-list-header>
+      <div *ngFor="let product of historyProducts; let idx=index;">
+        <ion-item button detail='true' [routerLink]="['/history-detail', idx]">
+          <ion-label>
+            <h2 style="color: #72a3f2;">{{product.name}}</h2>
+            <h3>Date: {{product.dateOfPurchase}}</h3>
+          </ion-label>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
+  <ng-template #noProducts>
+    <div class = "center">
+      <h2>No products purchased.</h2>
+      <ion-button color="dark" [routerLink]="['/home']">Back to home</ion-button>
     </div>
-  </ion-list>
+  </ng-template>
 </ion-content>

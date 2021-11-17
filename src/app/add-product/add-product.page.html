@@ -8,31 +8,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full" class="ion-no-margin">
-    <ion-list-header lines="full">
-      <ion-label>
-        New Product
-      </ion-label>
-    </ion-list-header>
-
-    <ion-item>
-      <ion-label>Product name:</ion-label>
-      <ion-input [(ngModel)]="product.name" placeholder="Enter name" type="text" clear-input=true></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Product price:</ion-label>
-      <ion-input [(ngModel)]="product.price" placeholder="Enter price" type="number" clear-input=true></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Product quantity:</ion-label>
-      <ion-input [(ngModel)]="product.quantity" placeholder="Enter quantity" type="number" clear-input=true></ion-input>
-    </ion-item>
-
-  </ion-list>
-  <section class="wrapper">
-    <ion-button (click)="addProduct()">Save</ion-button>
-    <ion-button color="dark" [routerLink]="['/manager']">Cancel</ion-button>
-  </section>
+  <form (ngSubmit)="addProduct()">
+    <ion-list lines="full" class="ion-no-margin">
+      <ion-list-header lines="full">
+        <ion-label>
+          New Product
+        </ion-label>
+      </ion-list-header>
+  
+      <ion-item>
+        <ion-label>Product name:</ion-label>
+        <ion-input [(ngModel)]="product.name" name="name" placeholder="Enter name" type="text" clear-input=true></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Product price:</ion-label>
+        <ion-input [(ngModel)]="product.price" name="price" placeholder="Enter price" type="number" clear-input=true></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Product quantity:</ion-label>
+        <ion-input [(ngModel)]="product.quantity" name="quantity" placeholder="Enter quantity" type="number" clear-input=true></ion-input>
+      </ion-item>
+  
+    </ion-list>
+    <section class="flex-parent jc-center">
+      <ion-button type = "submit">Save</ion-button>
+      <ion-button color="dark" (click) = "navigateBack()">Cancel</ion-button>
+    </section>
+  </form>
 </ion-content>
