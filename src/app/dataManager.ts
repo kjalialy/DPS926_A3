@@ -11,9 +11,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataManager {
-    constructor(public alertController: AlertController, public toastController: ToastController, private router: Router) {
-    }
-
+    constructor(public alertController: AlertController, public toastController: ToastController, private router: Router) {}
+    
     async errorMessage(message, header) {
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',

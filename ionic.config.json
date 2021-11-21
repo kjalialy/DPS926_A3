@@ -1,5 +1,7 @@
 {
   "name": "kjalialy_a3",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

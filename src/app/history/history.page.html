@@ -14,16 +14,18 @@
       <ion-list-header>
         Clothing
       </ion-list-header>
+      <!--Show when user purchased products-->
       <div *ngFor="let product of historyProducts; let idx=index;">
         <ion-item button detail='true' [routerLink]="['/history-detail', idx]">
           <ion-label>
             <h2 style="color: #72a3f2;">{{product.name}}</h2>
-            <h3>Date: {{product.dateOfPurchase}}</h3>
+            <h3>Quantity: {{product.quantity}}</h3>
           </ion-label>
         </ion-item>
       </div>
     </ion-list>
   </div>
+  <!--Show when user hasn't purchased products-->
   <ng-template #noProducts>
     <div class = "center">
       <h2>No products purchased.</h2>
