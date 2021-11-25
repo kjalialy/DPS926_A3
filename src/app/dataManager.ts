@@ -47,7 +47,8 @@ export class DataManager {
     async buyProduct(quantity, product, total) {
       let updateQuantity = product.quantity - Number(quantity);
       product.setQuantity(updateQuantity);
-      AppComponent.historyList.push(new History(product.name, Number(quantity), product.price, `${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`, Number(total)));
+      AppComponent.historyList.push(new History(product.name, Number(quantity), product.price, 
+      `${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`, Number(total)));
 
       await this.toastMessage(`${product.name} has been bought successfully!`, "Product Purchased");
     }
